@@ -1,1 +1,1 @@
-The following can be used as a general fetch-wrapper for making calls to the Shopify Ajax API. The sample useage is for adding an upcharge fee product based on whether the cart contains certain qualifying items.
+File can be used as a general fetch-wrapper for making calls to the Shopify Ajax API. The sample useage is for adding an upcharge fee product based on whether the cart contains certain qualifying items.

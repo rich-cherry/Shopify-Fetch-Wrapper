@@ -3,8 +3,6 @@ class UpCharge {
   constructor() {
     //Sample Useage
     this.containsUpcharge = false;
-    this.containsCustomText = false;
-    this.containsCustomImage = false;
     this.currentTotalUpcharges = 0;
     this.totalCorrectUpcharges = 0;
     this.upchargeVariantId = 40348491710655;
@@ -26,11 +24,9 @@ class UpCharge {
     console.log(data)
     data.items?.forEach(item => {
       if (item.properties?.['Add Personalized Text'] === 'Yes') {
-        this.containsCustomText = true;
         this.totalCorrectUpcharges += item.quantity;
       }
       if (item.properties?.['Add a Graphic'] === 'Yes') {
-        this.containsCustomImage = true;
         this.totalCorrectUpcharges += item.quantity;
       }
       if (item.variant_id === this.upchargeVariantId) {

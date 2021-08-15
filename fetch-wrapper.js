@@ -21,7 +21,6 @@ class UpCharge {
   //Sample Useage
   async evaluateCart() {
     const data = await this.getCart();
-    console.log(data)
     data.items?.forEach(item => {
       if (item.properties?.['Add Personalized Text'] === 'Yes') {
         this.totalCorrectUpcharges += item.quantity;
@@ -35,12 +34,10 @@ class UpCharge {
       }
     })
 
-    console.log(this)
-
     if (this.containsUpcharge && this.currentTotalUpcharges !== this.totalCorrectUpcharges) {
       let textBody = {
         updates: {
-          40348491710655: this.totalCorrectUpcharges
+          [this.upchargeVariantId]: this.totalCorrectUpcharges
         }
       }
       this.post('/cart/update.js', textBody)
@@ -49,14 +46,13 @@ class UpCharge {
       let textBody = {
         items: [
           {
-            id: 40348491710655,
+            id: this.upchargeVariantId,
             quantity: this.totalCorrectUpcharges
           }
         ]
       }
       this.post('/cart/add.js', textBody)
     }
-
   }
 
   post(endpoint, body) {

@@ -33,7 +33,8 @@ class UpCharge {
         this.currentTotalUpcharges = item.quantity;
       }
     })
-
+    
+    //If the cart already contains the upcharge product, but the qty is incorrect, adjust the qty with the correct post request.
     if (this.containsUpcharge && this.currentTotalUpcharges !== this.totalCorrectUpcharges) {
       let textBody = {
         updates: {
@@ -42,6 +43,8 @@ class UpCharge {
       }
       this.post('/cart/update.js', textBody)
     }
+    
+    //If the cart does not have the upcharge product, but should have one, update accordingly with the correct post request. 
     if (!this.containsUpcharge && this.currentTotalUpcharges !== this.totalCorrectUpcharges) {
       let textBody = {
         items: [
